@@ -6,13 +6,13 @@ Chegou a hora do desafio final!!!!
 
 Professor:
 
-Listar => listar todos os professores trazendo a informação de quais cursos eles lecionam
+Listar => listar todos os professores trazendo a informação de quais cursos eles lecionam (ok)
 
-Incluir => incluir um professor seguindo as seguintes regras: Não permitir incluir com e-mail repetido, validar obrigatoriedade dos campos nome, email, senha, criptografar a senha antes de inserir na base utilizando os recursos já disponíveis no código
+Incluir => incluir um professor seguindo as seguintes regras: Não permitir incluir com e-mail repetido(ok), validar obrigatoriedade dos campos nome, email, senha, (ok) criptografar a senha antes de inserir na base utilizando os recursos já disponíveis no código(ok)
 
-Alterar => alterar um professor seguindo as seguintes regras: Não permitir alterar o e-mail, validar obrigatoriedade dos campos nome, senha, criptografar a senha antes de inserir na base utilizando os recursos já disponíveis no código, somente o próprio professor pode altera seus dados
+Alterar => alterar um professor seguindo as seguintes regras: Não permitir alterar o e-mail (ok), validar obrigatoriedade dos campos nome, senha, criptografar a senha antes de inserir na base utilizando os recursos já disponíveis no código (ok)somente o próprio professor pode altera seus dados(ok)
 
-Excluir => excluir um professor seguindo as seguintes regras: Não permitir que o professor seja excluido caso esteja vinculado a algum curso, somente um professor pode excluir outro professor
+Excluir => excluir um professor seguindo as seguintes regras: Não permitir que o professor seja excluido caso esteja vinculado a algum curso(ok), somente um professor pode excluir outro professor(ok)
 
 Aluno:
 
@@ -52,7 +52,7 @@ Criar funcionalidade para o aluno avaliar o curso seguindo as seguintes regras: 
 
 # Pega Bandeira
 
-Você encontrará vários situações onde o código deverá ser melhorado ou até mesmo ajustado.
+Você encontrará vários situações onde o código deverá ser melhorado  ou até mesmo ajustado.
 Para facilitar, coloquei no código #pegabandeira. Essa hashtag apenas indica que tem algo que precisa ser ajustado/melhorado.
 Você terá de descobrir o que precisa ser feito
 

@@ -9,11 +9,7 @@ import { ProfessorService } from "src/app/services/professor.service"
 export class ListarProfessorComponent implements OnInit {
   professor: any[]
 
-  constructor(private service: ProfessorService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.service.listar().subscribe((professor) => {
-      console.log(professor)
-    })
-  }
+  ngOnInit(): void {}
 }
