@@ -8,20 +8,6 @@ import Mensagem from "../utils/mensagem"
 
 const router = express.Router()
 
-router.post(
-  "/professor",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const mensagem: Mensagem = await new ProfessorController().incluir(
-        req.body
-      )
-      res.json(mensagem)
-    } catch (e) {
-      next(e)
-    }
-  }
-)
-
 router.put(
   "/professor/:id",
   async (req: any, res: Response, next: NextFunction) => {

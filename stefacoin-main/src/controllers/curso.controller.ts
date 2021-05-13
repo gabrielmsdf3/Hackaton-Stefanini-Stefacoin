@@ -1,52 +1,69 @@
-import Curso from '../entities/curso.entity';
-import CursoRepository from '../repositories/curso.repository';
-import { FilterQuery } from '../utils/database/database';
-import Mensagem from '../utils/mensagem';
-import { Validador } from '../utils/utils';
+import Aluno from "../entities/aluno.entity"
+import Curso from "../entities/curso.entity"
+import CursoRepository from "../repositories/curso.repository"
+import { FilterQuery } from "../utils/database/database"
+import BusinessException from "../utils/exceptions/business.exception"
+import Mensagem from "../utils/mensagem"
+import { Validador } from "../utils/utils"
 
 export default class CursoController {
   async obterPorId(id: number): Promise<Curso> {
-    Validador.validarParametros([{ id }]);
-    return await CursoRepository.obterPorId(id);
+    Validador.validarParametros([{ id }])
+    return await CursoRepository.obterPorId(id)
   }
 
   async obter(filtro: FilterQuery<Curso> = {}): Promise<Curso> {
-    return await CursoRepository.obter(filtro);
+    return await CursoRepository.obter(filtro)
   }
 
   async listar(filtro: FilterQuery<Curso> = {}): Promise<Curso[]> {
-    return await CursoRepository.listar(filtro);
+    return await CursoRepository.listar(filtro)
   }
 
   async incluir(curso: Curso) {
-    const { nome, descricao, aulas, idProfessor } = curso;
-    Validador.validarParametros([{ nome }, { descricao }, { aulas }, { idProfessor }]);
+    const { nome, descricao, aulas, idProfessor } = curso
+    Validador.validarParametros([
+      { nome },
+      { descricao },
+      { aulas },
+      { idProfessor },
+    ])
 
-    const id = await CursoRepository.incluir(curso);
+    if (await CursoRepository.obter({ nome })) {
+      throw new BusinessException("Error, Curso ja cadastrado")
+    }
 
-    return new Mensagem('Aula incluido com sucesso!', {
+    const id = await CursoRepository.incluir(curso)
+
+    return new Mensagem("Aula incluido com sucesso!", {
       id,
-    });
+    })
   }
 
   async alterar(id: number, curso: Curso) {
-    const { nome, descricao, aulas, idProfessor } = curso;
-    Validador.validarParametros([{ id }, { nome }, { descricao }, { aulas }, { idProfessor }]);
+    const { nome, descricao, aulas, idProfessor } = curso
+    Validador.validarParametros([
+      { id },
+      { nome },
+      { descricao },
+      { aulas },
+      { idProfessor },
+    ])
 
-    await CursoRepository.alterar({ id }, curso);
+    await CursoRepository.alterar({ id }, curso)
 
-    return new Mensagem('Aula alterado com sucesso!', {
+    return new Mensagem("Aula alterado com sucesso!", {
       id,
-    });
+    })
   }
 
   async excluir(id: number) {
-    Validador.validarParametros([{ id }]);
+    Validador.validarParametros([{ id }])
 
-    await CursoRepository.excluir({ id });
+    await CursoRepository.excluir({ id })
 
-    return new Mensagem('Aula excluido com sucesso!', {
+    return new Mensagem("Aula excluido com sucesso!", {
       id,
-    });
+    })
   }
 }
