@@ -1,8 +1,8 @@
-import Exception from './exception';
+import Exception from "./exception"
 
 export default class UnauthorizedException extends Exception {
-  // #pegabandeira
-  constructor(message: string, status: number = 401) {
-    super(message, status);
+  // #pegabandeira - resolvido
+  constructor(message: string, status = 401) {
+    super(message, status)
   }
 }

@@ -1,5 +1,6 @@
 import Aluno from "../entities/aluno.entity"
 import Curso from "../entities/curso.entity"
+import alunoRepository from "../repositories/aluno.repository"
 import CursoRepository from "../repositories/curso.repository"
 import { FilterQuery } from "../utils/database/database"
 import BusinessException from "../utils/exceptions/business.exception"
@@ -17,7 +18,9 @@ export default class CursoController {
   }
 
   async listar(filtro: FilterQuery<Curso> = {}): Promise<Curso[]> {
-    return await CursoRepository.listar(filtro)
+    const listaCursos = await CursoRepository.listar(filtro)
+
+    return listaCursos
   }
 
   async incluir(curso: Curso) {
@@ -33,10 +36,8 @@ export default class CursoController {
       throw new BusinessException("Error, Curso ja cadastrado")
     }
 
-    const id = await CursoRepository.incluir(curso)
-
     return new Mensagem("Aula incluido com sucesso!", {
-      id,
+      id: await CursoRepository.incluir(curso),
     })
   }
 
@@ -58,6 +59,14 @@ export default class CursoController {
   }
 
   async excluir(id: number) {
+    const alunos = await alunoRepository.listar()
+    alunos.forEach((aluno) => {
+      if (aluno.cursos.find((curso) => curso.id === id)) {
+        throw new BusinessException(
+          "Existe algum aluno matriculado neste curso e ele não pode ser deletado"
+        )
+      }
+    })
     Validador.validarParametros([{ id }])
 
     await CursoRepository.excluir({ id })
