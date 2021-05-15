@@ -9,7 +9,13 @@ import { ProfessorService } from "src/app/services/professor.service"
 export class ListarProfessorComponent implements OnInit {
   professor: any[]
 
-  constructor() {}
+  constructor(private professorService: ProfessorService) {}
+
+  onClick() {
+    //this.professor = this.professorService.all()
+    let data = this.professorService.all()
+    console.log(data)
+  }
 
   ngOnInit(): void {}
 }
