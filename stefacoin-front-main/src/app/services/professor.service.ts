@@ -20,8 +20,9 @@ export class ProfessorService {
     })
   }
 
-  all(): Observable<any> {
-    return this.httpClient.get<any>(URL).pipe(retry(2))
+  all(): Observable<Professor[]> {
+    console.log("executando chamada")
+    return this.httpClient.get<Professor[]>(URL)
   }
 
   obter(id: string) {

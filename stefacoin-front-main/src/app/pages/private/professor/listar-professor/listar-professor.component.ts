@@ -13,8 +13,9 @@ export class ListarProfessorComponent implements OnInit {
 
   onClick() {
     //this.professor = this.professorService.all()
-    let data = this.professorService.all()
-    console.log(data)
+    this.professorService.all().subscribe((data) => {
+      console.log(data)
+    })
   }
 
   ngOnInit(): void {}
